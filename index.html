@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Adaa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #2b1d24, #1a0f14);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* Passcode Screen Style */
+        .passcode-container {
+            background: linear-gradient(135deg, #8b3a4e, #4a1525);
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            text-align: center;
+            width: 340px;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        .passcode-container h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 34px;
+            margin-bottom: 20px;
+            color: #ffccd5;
+        }
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .dot {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: transparent;
+            transition: 0.3s;
+        }
+        .dot.filled {
+            background: #fff;
+            box-shadow: 0 0 12px #ff758c;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .key {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            padding: 18px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            aspect-ratio: 1;
+        }
+        .key:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        .key:active {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        #error-msg {
+            color: #ff6b6b;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Main Birthday Surprise Screen */
+        #main-screen {
+            background: #fff0f3;
+            color: #333;
+            width: 92%;
+            max-width: 650px;
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            margin: 20px;
+        }
+        #main-screen h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #c9184a;
+            font-size: 44px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* HD Photo Showcase Gallery (5 Photos Layout) */
+        .hd-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .hd-gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* Pehli photo ko thoda bada aur attractive banaya hai */
+        .hd-gallery img:first-child {
+            grid-column: span 2;
+            height: 190px;
+        }
+        .hd-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(201, 24, 74, 0.3);
+        }
+
+        /* Typewriter Message Box */
+        .message-box {
+            background: #fff;
+            padding: 22px 25px;
+            border-radius: 15px;
+            border: 2px dashed #ffb3c1;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .message-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #4a4a4a;
+            text-align: left;
+            min-height: 120px;
+            white-space: pre-wrap;
+        }
+
+        .footer-quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #800f2f;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .hd-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hd-gallery img:first-child {
+                grid-column: span 2;
+            }
+            #main-screen {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="passcode-container" id="passcode-screen">
+        <h2>Enter Passcode ❤️</h2>
+        <div class="dots">
+            <div class="dot" id="d1"></div>
+            <div class="dot" id="d2"></div>
+            <div class="dot" id="d3"></div>
+            <div class="dot" id="d4"></div>
+        </div>
+        <div class="keypad">
+            <button class="key" onclick="pressKey('1')">1</button>
+            <button class="key" onclick="pressKey('2')">2</button>
+            <button class="key" onclick="pressKey('3')">3</button>
+            <button class="key" onclick="pressKey('4')">4</button>
+            <button class="key" onclick="pressKey('5')">5</button>
+            <button class="key" onclick="pressKey('6')">6</button>
+            <button class="key" onclick="pressKey('7')">7</button>
+            <button class="key" onclick="pressKey('8')">8</button>
+            <button class="key" onclick="pressKey('9')">9</button>
+            <button class="key" onclick="pressKey('0')">0</button>
+        </div>
+        <p id="error-msg">Wrong Passcode! Try Again 💔</p>
+    </div>
+
+    <div id="main-screen" class="hidden">
+        <h1>Happy Birthday Adaa! 🎉</h1>
+        
+        <div class="hd-gallery">
+            <img src="adaa1.jpg" alt="Adaa Photo 1">
+            <img src="adaa2.jpg" alt="Adaa Photo 2">
+            <img src="adaa3.jpg" alt="Adaa Photo 3">
+            <img src="adaa4.jpg" alt="Adaa Photo 4">
+            <img src="adaa5.jpg" alt="Adaa Photo 5">
+        </div>
+
+        <div class="message-box">
+            <div class="message-text" id="typewriter"></div>
+        </div>
+
+        <div class="footer-quote">
+            "I want to annoy you for the rest of my life." 🥰✨
+        </div>
+    </div>
+
+    <script>
+        let correctPin = "1234"; // Aap yahan apna passcode change kar sakte hain
+        let enteredPin = "";
+
+        function pressKey(num) {
+            if (enteredPin.length < 4) {
+                enteredPin += num;
+                updateDots();
+            }
+            if (enteredPin.length === 4) {
+                setTimeout(checkPin, 350);
+            }
+        }
+
+        function updateDots() {
+            for (let i = 1; i <= 4; i++) {
+                let dot = document.getElementById(`d${i}`);
+                if (i <= enteredPin.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            }
+        }
+
+        function checkPin() {
+            if (enteredPin === correctPin) {
+                document.getElementById('passcode-screen').classList.add('hidden');
+                document.getElementById('main-screen').classList.remove('hidden');
+                startTypewriter();
+            } else {
+                let errorEl = document.getElementById('error-msg');
+                errorEl.style.display = 'block';
+                setTimeout(() => {
+                    enteredPin = "";
+                    updateDots();
+                    errorEl.style.display = 'none';
+                }, 1200);
+            }
+        }
+
+        // Typewriter Effect Text (Hinglish)
+        const message = "Happy Birthday to the love of my life, Adaa! ❤️\n\nTum meri zindagi ka sabse khoobsurat hissa ho. Tumhari har ek muskaan mere din ko roshan kar deti hai. Main chahta hoon ki yeh saal tumhare liye dher saari khushiyan, pyaar aur kamyaabi lekar aaye. Tumhe paakar main khud ko duniya ka sabse khushnaseeb insaan maanta hoon. Thank you for existing and making my world so magical! ✨";
+        
+        let i = 0;
+        function startTypewriter() {
+            let speed = 40; // Typing speed (milliseconds)
+            function type() {
+                if (i < message.length) {
+                    document.getElementById("typewriter").innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+  </html>
+
